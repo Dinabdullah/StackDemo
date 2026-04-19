@@ -1,2 +1,2 @@
-This repository contains all manual test cases, test plans, and Jira import files produced by Group D for the BStackDemo e-commerce platform. The goal is to verify all key user-facing features through structured manual testing across multiple browsers and devices.
+This repository contains all manual test cases, test plans, and Jira import files produced by our team for the BStackDemo e-commerce platform. The goal is to verify all key user-facing features through structured manual testing across multiple browsers and devices.
 https://hamzaalfarouk2007.atlassian.net/jira/software/c/projects/SD/boards/70/backlog?assignee=unassigned&atlOrigin=eyJpIjoiMDRjMGM0ZjBlZTFhNGE0ZDhjNmU5ZmMyNjRmNTI0NmIiLCJwIjoiaiJ9
