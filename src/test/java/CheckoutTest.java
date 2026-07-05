@@ -38,7 +38,7 @@ public class CheckoutTest {
         }
     }
 
-    // TEST 1: Checkout ناجح
+
     @Test
     public void testSuccessfulCheckout() {
         checkoutPage.addProductToCart();

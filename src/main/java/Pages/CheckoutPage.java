@@ -9,7 +9,7 @@ public class CheckoutPage {
     WebDriver driver;
     WebDriverWait wait;
 
-    // الـ Locators — عناوين العناصر في الصفحة
+
     By cartIcon = By.className("shopping_cart_link");
     By checkoutBtn = By.id("checkout");
     By firstNameField = By.id("first-name");
