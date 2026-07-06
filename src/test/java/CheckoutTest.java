@@ -14,6 +14,7 @@ public class CheckoutTest {
 
     @BeforeMethod
     public void setUp() {
+
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
         options.addArguments("--disable-blink-features=AutomationControlled");
@@ -22,8 +23,9 @@ public class CheckoutTest {
         driver.manage().timeouts().implicitlyWait(Duration.ZERO);
         driver.manage().deleteAllCookies();
 
-        // Login
-        driver.get("https://www.saucedemo.com");
+        driver.get("https://www.stackdemo.com");
+        new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.id("user-name")));
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
         driver.findElement(By.id("login-button")).click();
@@ -38,7 +40,6 @@ public class CheckoutTest {
         }
     }
 
-
     @Test
     public void testSuccessfulCheckout() {
         checkoutPage.addProductToCart();
@@ -52,14 +53,12 @@ public class CheckoutTest {
         Assert.assertEquals(msg, "Thank you for your order!");
     }
 
-
     @Test
     public void testCheckoutEmptyFirstName() {
         checkoutPage.addProductToCart();
         checkoutPage.goToCart();
         checkoutPage.clickCheckout();
 
-        // Fluent Wait
         FluentWait<WebDriver> fluentWait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(10))
                 .pollingEvery(Duration.ofMillis(300))
@@ -74,7 +73,6 @@ public class CheckoutTest {
 
         Assert.assertTrue(checkoutPage.isErrorDisplayed());
     }
-
 
     @Test
     public void testCheckoutEmptyLastName() {
