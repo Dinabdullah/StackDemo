@@ -1,5 +1,4 @@
 import Pages.CheckoutPage;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -15,8 +14,6 @@ public class CheckoutTest {
 
     @BeforeMethod
     public void setUp() {
-        WebDriverManager.chromedriver().setup();
-
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
         options.addArguments("--disable-blink-features=AutomationControlled");
@@ -25,6 +22,7 @@ public class CheckoutTest {
         driver.manage().timeouts().implicitlyWait(Duration.ZERO);
         driver.manage().deleteAllCookies();
 
+        // Login
         driver.get("https://www.stackdemo.com");
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
@@ -40,6 +38,7 @@ public class CheckoutTest {
         }
     }
 
+    // TEST 1: Checkout ناجح
     @Test
     public void testSuccessfulCheckout() {
         checkoutPage.addProductToCart();
@@ -53,12 +52,14 @@ public class CheckoutTest {
         Assert.assertEquals(msg, "Thank you for your order!");
     }
 
+    // TEST 2: Checkout من غير First Name
     @Test
     public void testCheckoutEmptyFirstName() {
         checkoutPage.addProductToCart();
         checkoutPage.goToCart();
         checkoutPage.clickCheckout();
 
+        // Fluent Wait
         FluentWait<WebDriver> fluentWait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(10))
                 .pollingEvery(Duration.ofMillis(300))
@@ -74,6 +75,7 @@ public class CheckoutTest {
         Assert.assertTrue(checkoutPage.isErrorDisplayed());
     }
 
+    // TEST 3: Checkout من غير Last Name
     @Test
     public void testCheckoutEmptyLastName() {
         checkoutPage.addProductToCart();
