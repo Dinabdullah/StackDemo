@@ -9,17 +9,17 @@ public class CheckoutPage {
     WebDriver driver;
     WebDriverWait wait;
 
-
-    By cartIcon = By.className("shopping_cart_link");
-    By checkoutBtn = By.id("checkout");
-    By firstNameField = By.id("first-name");
-    By lastNameField = By.id("last-name");
-    By postalCodeField = By.id("postal-code");
-    By continueBtn = By.id("continue");
-    By finishBtn = By.id("finish");
-    By successMessage = By.className("complete-header");
-    By errorMessage = By.cssSelector(".error-message-container");
-    By addToCartBtn = By.id("add-to-cart-sauce-labs-backpack");
+    // Locators - bstackdemo.com
+    By addToCartBtn = By.xpath("(//div[@class='shelf-item__buy-btn'])[1]");
+    By cartIcon = By.className("shopping-cart");
+    By checkoutBtn = By.className("buy-btn");
+    By firstNameField = By.id("firstNameInput");
+    By lastNameField = By.id("lastNameInput");
+    By addressField = By.id("addressLine1Input");
+    By continueBtn = By.id("checkout-shipping-continue");
+    By finishBtn = By.cssSelector("button[data-cy='place-order']");
+    By successMessage = By.className("SuccessMessage_successMessage__3BMmq");
+    By errorMessage = By.cssSelector(".InputField_error__3ajOt");
 
     public CheckoutPage(WebDriver driver) {
         this.driver = driver;
@@ -27,25 +27,25 @@ public class CheckoutPage {
     }
 
     public void addProductToCart() {
+        wait.until(ExpectedConditions.elementToBeClickable(addToCartBtn));
         driver.findElement(addToCartBtn).click();
     }
 
     public void goToCart() {
+        wait.until(ExpectedConditions.elementToBeClickable(cartIcon));
         driver.findElement(cartIcon).click();
     }
 
     public void clickCheckout() {
-        wait.until(ExpectedConditions
-                .elementToBeClickable(checkoutBtn));
+        wait.until(ExpectedConditions.elementToBeClickable(checkoutBtn));
         driver.findElement(checkoutBtn).click();
     }
 
-    public void fillInfo(String first, String last, String zip) {
-        wait.until(ExpectedConditions
-                .visibilityOfElementLocated(firstNameField));
+    public void fillInfo(String first, String last, String address) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(firstNameField));
         driver.findElement(firstNameField).sendKeys(first);
         driver.findElement(lastNameField).sendKeys(last);
-        driver.findElement(postalCodeField).sendKeys(zip);
+        driver.findElement(addressField).sendKeys(address);
     }
 
     public void clickContinue() {
@@ -53,18 +53,17 @@ public class CheckoutPage {
     }
 
     public void clickFinish() {
-        wait.until(ExpectedConditions
-                .visibilityOfElementLocated(finishBtn));
+        wait.until(ExpectedConditions.elementToBeClickable(finishBtn));
         driver.findElement(finishBtn).click();
     }
 
     public String getSuccessMessage() {
-        wait.until(ExpectedConditions
-                .visibilityOfElementLocated(successMessage));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(successMessage));
         return driver.findElement(successMessage).getText();
     }
 
     public boolean isErrorDisplayed() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(errorMessage));
         return driver.findElement(errorMessage).isDisplayed();
     }
 }

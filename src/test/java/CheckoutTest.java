@@ -23,7 +23,7 @@ public class CheckoutTest {
         driver.manage().deleteAllCookies();
 
         // Login
-        driver.get("https://www.stackdemo.com");
+        driver.get("https://www.bstackdemo.com");
         driver.findElement(By.id("user-name")).sendKeys("standard_user");
         driver.findElement(By.id("password")).sendKeys("secret_sauce");
         driver.findElement(By.id("login-button")).click();
