@@ -52,7 +52,7 @@ public class CheckoutTest {
         Assert.assertEquals(msg, "Thank you for your order!");
     }
 
-    // TEST 2: Checkout من غير First Name
+
     @Test
     public void testCheckoutEmptyFirstName() {
         checkoutPage.addProductToCart();
@@ -75,7 +75,7 @@ public class CheckoutTest {
         Assert.assertTrue(checkoutPage.isErrorDisplayed());
     }
 
-    // TEST 3: Checkout من غير Last Name
+
     @Test
     public void testCheckoutEmptyLastName() {
         checkoutPage.addProductToCart();
