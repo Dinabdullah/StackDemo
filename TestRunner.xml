@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="StackDemo Suite" verbose="1">
+    <test name="StackDemo Tests">
+        <classes>
+            <class name="CheckoutTest"/>
+            <class name="LoginTests"/>
+            <class name="NavAndUi"/>
+            <class name="ProductGalleryTests"/>
+            <class name="ShoppingCartTests"/>
+        </classes>
+    </test>
+</suite>
